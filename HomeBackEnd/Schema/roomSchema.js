@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 
 const roomSchema = new mongoose.Schema({
-  roomNo: Int32Array, //Room No.
+  roomNo: {
+    type:Number,
+    required:true,
+    unique:true,
+  }, //Room No.
   years: [
     {
       year: Number, // Year of the records
@@ -13,14 +17,15 @@ const roomSchema = new mongoose.Schema({
             min: 1,
             max: 12,
           },
-          tenantName: String,
-          tenantId: Number, //later chage to mongo DB object
+          tenantHeadName: String,
+          tenantIds: [], //later chage to mongo DB object
           roomRent: Number, // Monthly rent amount
           members: Number, // Number of members in the room
           lightBillRent: Number,
           roomRentPaid: Number,
           lightBillRentPaid: Number,
           ExtraPaid: Number,
+          note:String,
         },
         // ... (12 entries, one for each month)
       ],

@@ -5,7 +5,9 @@ const mongo = require("mongoose");
 const bd = require("body-parser");
 const app = express();
 const cors = require("cors");
+
 const roomRoutes = require("./Routes/roomRoutes");
+const tenantRoutes=require("./Routes/tenantRoutes");
 
 mongo.connect(process.env.DB_URL_DASHRATH);
 mongo.connection.on("error", (err) => {
@@ -16,15 +18,17 @@ mongo.connection.on("connected", (connected) => {
   console.log("DataBase Connection Successfull");
 });
 
-const cors = require("cors");
 app.use(
   cors({
     origin: "*",
   })
 );
 
-app.use(bd.json({ limit: "50mb" }));
+app.use(bd.urlencoded({extended:false}));
+app.use(bd.json());
 
+app.use(roomRoutes);
+app.use(tenantRoutes);
 app.listen(3000, () => {
   console.log("server up and running ");
 });

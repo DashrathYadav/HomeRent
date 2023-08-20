@@ -4,8 +4,8 @@ const { newRoomPost, newYearPost, newMonthPost } = require("../Controller/roomHa
 
 const router= Router();
 
-router.post("/createRoom",newRoomPost);
-router.post("/createYear",newYearPost);
-router.post("/createMonth",newMonthPost);
+router.post("/createTenant",createTenant);
+router.post("/updateTenant",updateTenant);
+router.post("/deleteTenant",deleteTenant);
 
 module.exports=router;  

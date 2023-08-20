@@ -1,8 +1,11 @@
 const roomSchema = require("../Schema/roomSchema");
 //post request for creating new Room
-module.exports.newRoom = async (req, res) => {
+module.exports.newRoomPost = async (req, res) => {
   // params need roomNo.
-
+  
+  console.log(req.body.roomNo);
+  console.log(req.body.year);
+  console.log(req.body);
   try {
     const room = {
       roomNo: req.body.roomNo,
@@ -14,8 +17,8 @@ module.exports.newRoom = async (req, res) => {
           months: [
             {
               month: 1,
-              tenantName: "Ambika Yadav",
-              tenantId: 101,
+              tenantHeadName: "Ambika Yadav",
+              tenantId: [101],
               roomRent: 1000,
               members: 4,
               lightBillRent: 500,
@@ -30,9 +33,11 @@ module.exports.newRoom = async (req, res) => {
 
     const result = await roomSchema.create(room);
     console.log("room Create succesfully", result);
+    res.status(200).send(result);    
   } catch (err) {
     console.log(err);
   }
+
 };
 
 // post request for creating new Year.
@@ -45,11 +50,11 @@ module.exports.newYearPost = async (req, res) => {
       months: [
         {
           month: 1,
-          tenantName: "Ambika Yadav",
-          tenantId: 103,
-          roomRent: 1000,
-          members: 4,
-          lightBillRent: 500,
+          tenantHeadName: "Ambika Yadav",
+          tenantId: [103],
+          roomRent: 5000,
+          members: 3,
+          lightBillRent: 700,
           roomRentPaid: 0,
           lightBillRentPaid: 0,
           ExtraPaid: 0,
@@ -59,24 +64,28 @@ module.exports.newYearPost = async (req, res) => {
 
     const filter = { roomNo: req.body.roomNo };
     let room = await roomSchema.findOne(filter);
-    room = room.years.push(yearData);
-    room = await room.save();
+    console.log("room",room);
+     room.years.push(yearData);
+    console.log("room to be update is",room);
+    let rooms= new roomSchema(room);
+    room = await rooms.save();
     console.log("room saved successfully");
+    res.status(200).send(room);    
   } catch (err) {
     console.log("Error in years", err);
   }
 };
 
 // post request for creating new month
-module.exports.newMonth = async (req, res) => {
+module.exports.newMonthPost = async (req, res) => {
   // required parms:  room No, year
   //month,tenenatName,tenantId, roomRent,members,lightBillrent
 
   try {
     const month = {
       month: req.body.month,
-      tenantName: req.body.tenantName,
-      tenantId: 103,
+      tenantHeadName: req.body.tenantName,
+      tenantId: [103],
       roomRent: req.body.roomRent, // later implement default value  feature.
       members: req.body.members,
       lightBillRent: req.body.lightBillRent,
@@ -85,13 +94,17 @@ module.exports.newMonth = async (req, res) => {
       ExtraPaid: 0,
     };
 
+  
     const filter = { roomNo: req.body.roomNo };
     let room = await roomSchema.findOne(filter);
     room.years[req.body.year - 2023].months.push(month);
-    room = await room.save();
+    let rooms= new roomSchema(room);
+    room = await rooms.save();
     console.log("month added successfully");
+    res.status(200).send(room);    
   } catch (err) {
     console.log("error in month update");
     console.log(err);
   }
+  
 };
