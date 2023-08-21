@@ -5,4 +5,8 @@ router.post("/createTenant",createTenant);
 // router.post("/updateTenant",updateTenant);
 // router.post("/deleteTenant",deleteTenant);
 
+
+// login.
+router.post("/login",login);
+
 module.exports=router;  
