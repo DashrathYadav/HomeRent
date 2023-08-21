@@ -1,11 +1,8 @@
 const {Router}= require("express");
-
-const { newRoomPost, newYearPost, newMonthPost } = require("../Controller/roomHandler");
-
+const { createTenant } = require("../Controller/tenantHandler");
 const router= Router();
-
 router.post("/createTenant",createTenant);
-router.post("/updateTenant",updateTenant);
-router.post("/deleteTenant",deleteTenant);
+// router.post("/updateTenant",updateTenant);
+// router.post("/deleteTenant",deleteTenant);
 
 module.exports=router;  
