@@ -29,6 +29,13 @@ app.use(bd.json());
 
 app.use(roomRoutes);
 app.use(tenantRoutes);
+
+app.use((req,res,next)=>{
+  res.status(404).json({
+      msg: "Error Bad Request can not find the page you are requesting for"
+  })
+})
+
 app.listen(3000, () => {
   console.log("server up and running ");
 });

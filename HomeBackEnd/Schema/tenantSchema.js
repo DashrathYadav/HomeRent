@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const tenantSchema = new mongoose.Schema({
+  AdharNumber:{
+    type:String,
+    unique:true,
+  },
   tenantName: {
     type: String,
     required: true,
@@ -9,8 +13,8 @@ const tenantSchema = new mongoose.Schema({
   tenantProfileUrl: String,
   tenantDoc: String,
   tenantMobile: String,
-  Deposited: Number,
-  RegisteredOn: Date,
+  deposited: Number,
+  registeredOn: Date,
   lastDay: Date,
   roomNo: Number,
 });

@@ -6,6 +6,7 @@ const roomSchema = new mongoose.Schema({
     required:true,
     unique:true,
   }, //Room No.
+  roomPassword:String,
   years: [
     {
       year: Number, // Year of the records

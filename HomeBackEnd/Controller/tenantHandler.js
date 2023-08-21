@@ -4,15 +4,17 @@ module.exports.createTenant = async (req, res) => {
 
   try{
   const tenantData = {
+    AdharNumber:req.body.AdharNumber,
     tenantName: req.body.tenantName,
     role:"tenant",
     tenantProfileUrl: req.body.tenantProfileUrl,
     tenantDoc: req.body.tenantDoc,
     tenantMobile: req.body.tenantMobile,
-    Deposited: req.body.Deposited,
-    RegisteredOn: new Date(),
+    deposited: req.body.Deposited,
+    registeredOn: new Date(),
     lastDay: new Date(),
     roomNo: req.body.roomNo,
+
   };
 
   let tenant = new tenantSchema(tenantData);

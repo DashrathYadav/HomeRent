@@ -5,10 +5,11 @@ module.exports.newRoomPost = async (req, res) => {
 
   console.log(req.body.roomNo);
   console.log(req.body.year);
-  console.log(req.body);
+
   try {
     const room = {
       roomNo: req.body.roomNo,
+      roomPassword:`${req.body.roomNo}`,
       years: [
         //each year as object
         {
