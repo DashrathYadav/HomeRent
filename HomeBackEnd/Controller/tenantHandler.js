@@ -53,14 +53,14 @@ module.exports.login = async (req, res) => {
   }
 };
 
-module.exports.adminPassword = async(req,res)=>{
-   const admin= new adminSchema({
-    role:"Admin",
-    password:"1234",
-   });
+// module.exports.adminPassword = async(req,res)=>{
+//    const admin= new adminSchema({
+//     role:"Admin",
+//     password:"1234",
+//    });
    
-    admin.save();
-}
+//     admin.save();
+// }
 
 module.exports.adminLogin = async (req, res) => {
   // required params :- adminPassword

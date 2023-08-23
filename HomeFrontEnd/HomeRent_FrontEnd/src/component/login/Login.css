@@ -1,0 +1,45 @@
+.login--container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.login--form{
+    /* background-color: yellow; */
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    align-items: center;
+    border: 1px solid ;
+
+
+}
+
+.login--title{
+    margin-bottom: 10px;
+}
+
+.login--input{
+    padding: 10px;
+    margin-bottom: 20px;
+    border:none;
+    border-bottom: 1px solid black;
+}
+
+.login--button{
+    margin-top: 10px;
+    padding: 10px 25px;
+    border-radius: 20px;
+    background-color: lightgrey;
+    border: none;
+    cursor: pointer;
+}
+
+.login--button:hover{
+
+    margin-top: 11px;
+
+}
