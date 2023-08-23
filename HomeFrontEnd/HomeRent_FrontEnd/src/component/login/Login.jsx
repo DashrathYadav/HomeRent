@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link, redirect } from "react-router-dom";
+import { Link, redirect, redirectDocument } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 function Login() {
+
+  const dispatch= useDispatch();
+
   const backedURL = "http://localhost:3000/";
 
   const [roomNo, setroomNo] = useState("");
@@ -14,7 +18,7 @@ function Login() {
         roomNo,
         roomPassword: password,
       };
-      const result = await fetch(backedURL + "login", {
+      let result = await fetch(backedURL + "login", {
         body: JSON.stringify(data),
         method: "POST",
         headers: {
@@ -23,9 +27,13 @@ function Login() {
       });
       if (!result.ok) throw Error("Failed to Login");
       else {
-        console.log(result.json());
-        redirect('/home',);
-        
+
+        result= await result.json();
+        result=JSON.stringify(result);
+        console.log("login result",result);
+        sessionStorage.setItem('roomData',result);
+        location.href='/home';
+
       }
     } catch (err) {
       //handling error display

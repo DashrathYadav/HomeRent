@@ -1,0 +1,6 @@
+.MonthDetail--container{
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid violet;
+}

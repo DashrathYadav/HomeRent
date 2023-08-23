@@ -5,6 +5,8 @@ import LanginPage from "./component/LanginPage"
 import LoginOwner from "./component/login/LoginOwner"
 
 import { Provider } from "react-redux";
+import HomePage from "./component/home/HomePage";
+import store from "./component/store/store";
 
 const router=createBrowserRouter(
   createRoutesFromElements(
@@ -12,6 +14,7 @@ const router=createBrowserRouter(
     <Route path="/" element={<LanginPage/>} />
     <Route path="/login" element={<Login/>} />
     <Route path="/loginOwner" element={<LoginOwner/>} />
+    <Route path="/home" element={<HomePage/>} />
     </Route>
   )
 )
