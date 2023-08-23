@@ -8,8 +8,9 @@ const cors = require("cors");
 
 const roomRoutes = require("./Routes/roomRoutes");
 const tenantRoutes=require("./Routes/tenantRoutes");
+const adminSchema = require("./Schema/adminSchema");
 
-const adminSchema = require("../Schema/adminSchema");
+
 
 mongo.connect(process.env.DB_URL_DASHRATH);
 mongo.connection.on("error", (err) => {
@@ -17,21 +18,25 @@ mongo.connection.on("error", (err) => {
 });
 
 
+//admin record initilize
+
+function adminInitilize()
+{
+   const admin= new adminSchema({
+    role:"Admin",
+    password:"1234",
+   });
+   
+    admin.save();
+}
 
 mongo.connection.on("connected", (connected) => {
   console.log("DataBase Connection Successfull");
+
+  // adminInitilize();
+  
 });
 
-app.use(()=>{
-  
-       const admin= new adminSchema({
-        role:"Admin",
-        password:"1234",
-       });
-       
-        admin.save();
-  
-})
 
 app.use(
   cors({

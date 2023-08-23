@@ -5,4 +5,4 @@ const adminSchema = new mongoose.Schema({
     password:String,
 });
 
-module.exports=mongoose.model(admins,adminSchema);
+module.exports=mongoose.model("admins",adminSchema);

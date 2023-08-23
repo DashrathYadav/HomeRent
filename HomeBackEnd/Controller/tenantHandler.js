@@ -34,8 +34,10 @@ module.exports.createTenant = async (req, res) => {
 module.exports.login = async (req, res) => {
    // required params :- roomNo ,  roomPassword
   try {
-    const roomNo = req.body.roomNo;
+    console.log(req.body);
+    const roomNo = Number(req.body.roomNo);
     const roomPassword = req.body.roomPassword;
+    console.log("room request of ",roomNo,roomPassword);
     const room = await roomSchema.findOne({ roomNo: roomNo });
 
     console.log("found room", room);
@@ -45,8 +47,9 @@ module.exports.login = async (req, res) => {
       res.status(401).send("Invalid credintial");
       return;
     }
-
-    res.status(200).send(room);
+    console.log("response successfully")
+  
+    res.status(201).send(room);
   } catch (err) {
     console.log("error in login", err);
     res.status(400).send(err);
@@ -65,7 +68,7 @@ module.exports.login = async (req, res) => {
 module.exports.adminLogin = async (req, res) => {
   // required params :- adminPassword
   try {
-
+    console.log(req.body);
     const adminPass=req.body.adminPassword;
     const admin=await adminSchema.findOne({role:'Admin'});
     if( admin?.password !== adminPass)
@@ -75,7 +78,8 @@ module.exports.adminLogin = async (req, res) => {
       return;
     }
 
-    res.status(200).send("ALl you want server can send you");
+    console.log("admin login success");
+    res.status(200).send(admin);
 
 
   } catch (err) {

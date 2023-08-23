@@ -43,3 +43,12 @@
     margin-top: 11px;
 
 }
+
+.login--wrongPassword{
+
+    border-bottom: 2px solid red;
+
+}
+.login--button:active{
+    background-color: gray;
+}
