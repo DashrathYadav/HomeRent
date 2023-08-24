@@ -21,6 +21,7 @@ function Login() {
       let result = await fetch(backedURL + "login", {
         body: JSON.stringify(data),
         method: "POST",
+        credentials:'include',
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },

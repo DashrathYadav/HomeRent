@@ -12,16 +12,21 @@ function LoginOwner() {
       const data = {
         adminPassword: password,
       };
-      const result = await fetch(backedURL + "adminLogin", {
+      let result = await fetch(backedURL + "adminLogin", {
         body: JSON.stringify(data),
         method: "POST",
+        credentials:'include',
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
       });
       if (!result.ok) throw Error("Failed to Login");
       else {
-        console.log(result.json());
+        result=await result.json()
+       result= JSON.stringify(result);
+       console.log(result);   
+        sessionStorage.setItem('adminDetail',result);
+        location.href='/admin';
       }
     } catch (err) {
       //handling error display

@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 
 const maxAge = 60 * 60; //1 hour
 function createToken(id) {
-  return jwt.sign({ id },process.env.SECRETE_SEED, { expiresIn: maxAge });
+  return jwt.sign({ id },"This is the secret key", { expiresIn: maxAge });
 }
 
 module.exports.createTenant = async (req, res) => {
@@ -84,9 +84,10 @@ module.exports.adminLogin = async (req, res) => {
       return;
     }
     const token = createToken(adminPass);
-    res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 }); // 1 hour
+    console.log("token is",token);
     console.log("admin login success");
-    res.status(200).send(admin);
+    res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 10000 }).status(200).send(admin); // 1 hour
+    // res.status(200).send(admin);
 
 
   } catch (err) {

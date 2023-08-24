@@ -1,6 +1,26 @@
-.view--container{
+.Details--container{
   display: flex;
   width: inherit;
   height: inherit;
-  background-color: yellow;
+  /* background-color: yellow; */
+  flex-direction: column;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.Details--roomNoDiv{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.Details--roomNo{
+  border: 1px solid gray;
+  padding: 10px;
+  margin: 5px;
+  color: black;
+  box-shadow: 1px 2px 2px ;
+  flex-wrap: wrap;
+}
+.Details--roomNo:hover{
+  background-color:bisque;
+  
 }

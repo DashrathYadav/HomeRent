@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import HomePage from "./component/home/HomePage";
 import store from "./component/store/store";
 import Dashboard from "./component/admin/Dashboard";
+import Details from "./component/admin/details/Details";
 
 
 const router=createBrowserRouter(
@@ -18,7 +19,8 @@ const router=createBrowserRouter(
     <Route path="/loginOwner" element={<LoginOwner/>} />
     <Route path="/home" element={<HomePage/>} />
     <Route path="/admin" element={<Dashboard/>}>
-      <Route path="/view" element={} />
+      <Route path="roomDetails" element={<Details/>} />
+      {/* <Route path="/roomDetails:roomNo" element={}/> */}
       {/* <Route path="/create" element={} /> */}
       {/* <Route path="/edit" element={} /> */}
     </Route>

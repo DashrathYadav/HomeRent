@@ -5,10 +5,18 @@ const mongo = require("mongoose");
 const bd = require("body-parser");
 const app = express();
 const cors = require("cors");
-
+const cookieParser =require('cookie-parser');
 const roomRoutes = require("./Routes/roomRoutes");
 const tenantRoutes=require("./Routes/tenantRoutes");
 const adminSchema = require("./Schema/adminSchema");
+
+
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
 
 
 
@@ -24,6 +32,7 @@ function adminInitilize()
 {
    const admin= new adminSchema({
     role:"Admin",
+    rooms:[],
     password:"1234",
    });
    
@@ -38,11 +47,8 @@ mongo.connection.on("connected", (connected) => {
 });
 
 
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+
+app.use(cookieParser());
 
 app.use(bd.urlencoded({extended:false}));
 app.use(bd.json());

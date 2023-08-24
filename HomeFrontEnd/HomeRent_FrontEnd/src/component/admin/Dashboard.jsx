@@ -6,7 +6,7 @@ function Dashboard() {
   return (
     <div className="Dashboard--container">
     <nav className="Dashboard--nav">
-      <Link to={"/view"}>
+      <Link to={"roomDetails"}>
         <div className="Dashboard--viewDetails Dashboard--link">View Details</div>
       </Link>
 

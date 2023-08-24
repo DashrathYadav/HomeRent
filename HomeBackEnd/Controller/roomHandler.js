@@ -1,3 +1,4 @@
+const adminSchema = require("../Schema/adminSchema");
 const roomSchema = require("../Schema/roomSchema");
 //post request for creating new Room
 module.exports.newRoomPost = async (req, res) => {
@@ -33,6 +34,13 @@ module.exports.newRoomPost = async (req, res) => {
       ],
     };
 
+    const admin=await adminSchema.findOne({role:'Admin'})
+    if(!admin)
+    {
+        throw Error("Admin not found Roon can not be created");
+    }
+    admin.rooms.unshift(Number(req.body.roomNo));
+    await admin.save();
     const result = await roomSchema.create(room);
     console.log("room Create succesfully", result);
     res.status(200).send(result);
@@ -216,3 +224,4 @@ module.exports.updateMonthPost = async (req, res) => {
     res.status(401).send(` failed to update ${err} `);
   }
 };
+
