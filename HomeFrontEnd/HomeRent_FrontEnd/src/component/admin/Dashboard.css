@@ -1,0 +1,22 @@
+.Dashboard--nav{
+    display: flex;
+    color: black;
+    justify-content: space-evenly;
+    padding: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.8);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.7);
+}
+
+.Dashboard--link{
+    
+    padding: 10px;
+    color: black;
+    border: 1px solid gray;
+    background-color: lightgrey;
+    border-radius: 3px;
+
+
+}
+.Dashboard--link:active{
+    background-color: grey;
+}

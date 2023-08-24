@@ -1,0 +1,6 @@
+.view--container{
+  display: flex;
+  width: inherit;
+  height: inherit;
+  background-color: yellow;
+}

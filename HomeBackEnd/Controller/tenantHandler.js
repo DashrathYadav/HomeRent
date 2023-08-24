@@ -1,6 +1,13 @@
 const adminSchema = require("../Schema/adminSchema");
 const roomSchema = require("../Schema/roomSchema");
 const tenantSchema = require("../Schema/tenantSchema");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+const maxAge = 60 * 60; //1 hour
+function createToken(id) {
+  return jwt.sign({ id },process.env.SECRETE_SEED, { expiresIn: maxAge });
+}
 
 module.exports.createTenant = async (req, res) => {
   try {
@@ -19,7 +26,6 @@ module.exports.createTenant = async (req, res) => {
 
     let tenant = new tenantSchema(tenantData);
     let result = await tenant.save();
-
     res.status(200).send("Tenent created successfully " + result);
   } catch (err) {
     console.log("Error in creating Tenant", err);
@@ -71,13 +77,14 @@ module.exports.adminLogin = async (req, res) => {
     console.log(req.body);
     const adminPass=req.body.adminPassword;
     const admin=await adminSchema.findOne({role:'Admin'});
-    if( admin?.password !== adminPass)
+    if( !admin || (admin?.password !== adminPass) )
     {
-      console.log("Password not match");
+      console.log("admin not found or Password not match");
       res.status(401).send("Invalid Credintial");
       return;
     }
-
+    const token = createToken(adminPass);
+    res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 }); // 1 hour
     console.log("admin login success");
     res.status(200).send(admin);
 

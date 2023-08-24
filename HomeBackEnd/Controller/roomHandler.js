@@ -123,7 +123,7 @@ module.exports.newMonthPost = async (req, res) => {
     }
     console.log(room);
     const year=room.years.find((year)=>{
-      console.log(year.year,"!=",req.body.year);
+      console.log(year.year,"!=",Number(req.body.year));
       return year.year===Number(req.body.year);
     })
 
@@ -144,7 +144,7 @@ module.exports.newMonthPost = async (req, res) => {
 
       }
     
-    room.years[req.body.year - 2023].months.unshift(month);
+    year.months.unshift(month);
     let rooms = new roomSchema(room);
     room = await rooms.save();
     console.log("month added successfully");
@@ -170,7 +170,7 @@ module.exports.updateMonthPost = async (req, res) => {
       throw Error("Not able to find room | room Not exist");
     }
     const year=room.years.find((year)=>{
-      console.log(year.year,"!=",req.body.year);
+      console.log(year.year,"!=",Number(req.body.year));
       return year.year===Number(req.body.year);
     })
 
@@ -188,7 +188,7 @@ module.exports.updateMonthPost = async (req, res) => {
       throw Error("Month not Exist to Update");
       
     }
-    let Month = room.years[req.body.year - 2023].months[pos];
+    let Month = year.months[pos];
     console.log("old month deatail", room);
     console.log("month detail",Month);
 
