@@ -1,2 +1,5 @@
-* for admin no room password system.
-cross polic setting during deployment.
+-> for admin no room password system.  (Done)
+
+-> cross polic setting during deployment.
+
+-> Authentication with admin tag and token both
