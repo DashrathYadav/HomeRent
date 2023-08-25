@@ -9,6 +9,9 @@ import HomePage from "./component/home/HomePage";
 import store from "./component/store/store";
 import Dashboard from "./component/admin/Dashboard";
 import Details from "./component/admin/details/Details";
+import RoomDetail, { roomDataFetch } from "./component/admin/details/RoomDetail";
+import CreateOptions from "./component/admin/create/CreateOptions";
+import NewRoom from "./component/admin/create/NewRoom";
 
 
 const router=createBrowserRouter(
@@ -19,10 +22,18 @@ const router=createBrowserRouter(
     <Route path="/loginOwner" element={<LoginOwner/>} />
     <Route path="/home" element={<HomePage/>} />
     <Route path="/admin" element={<Dashboard/>}>
-      <Route path="roomDetails" element={<Details/>} />
-      {/* <Route path="/roomDetails:roomNo" element={}/> */}
-      {/* <Route path="/create" element={} /> */}
-      {/* <Route path="/edit" element={} /> */}
+      <Route path="roomDetails" element={<Details/>}>
+        <Route path=":roomNo" element={<RoomDetail/>}
+          loader={roomDataFetch}
+        />
+      </Route>
+      <Route path="create" element={<CreateOptions/>}>
+        <Route path="newRoom" element={<NewRoom/>}/>
+        <Route path="newYear" element={<NewYear/>}/>
+        <Route path="newMonth" element={<NewMonth/>}/>
+
+      </Route>
+      
     </Route>
     </Route>
   )

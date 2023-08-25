@@ -1,5 +1,6 @@
 const adminSchema = require("../Schema/adminSchema");
 const roomSchema = require("../Schema/roomSchema");
+
 //post request for creating new Room
 module.exports.newRoomPost = async (req, res) => {
   // params need roomNo.
@@ -10,11 +11,11 @@ module.exports.newRoomPost = async (req, res) => {
   try {
     const room = {
       roomNo: Number(req.body.roomNo),
-      roomPassword:`${req.body.roomNo}`,
+      roomPassword: `${req.body.roomNo}`,
       years: [
         //each year as object
         {
-          year: Number(req.body.year),
+          year: new Date().getFullYear(),
           // each month as object as month.
           months: [
             {
@@ -27,17 +28,16 @@ module.exports.newRoomPost = async (req, res) => {
               roomRentPaid: 0,
               lightBillRentPaid: 0,
               ExtraPaid: 0,
-              note:"Nothing",
+              note: "Nothing",
             },
           ],
         },
       ],
     };
 
-    const admin=await adminSchema.findOne({role:'Admin'})
-    if(!admin)
-    {
-        throw Error("Admin not found Roon can not be created");
+    const admin = await adminSchema.findOne({ role: "Admin" });
+    if (!admin) {
+      throw Error("Admin not found Roon can not be created");
     }
     admin.rooms.unshift(Number(req.body.roomNo));
     await admin.save();
@@ -68,7 +68,7 @@ module.exports.newYearPost = async (req, res) => {
           roomRentPaid: 0,
           lightBillRentPaid: 0,
           ExtraPaid: 0,
-          note:"Nothing",
+          note: "Nothing",
         },
       ],
     };
@@ -76,17 +76,15 @@ module.exports.newYearPost = async (req, res) => {
     const filter = { roomNo: req.body.roomNo };
     let room = await roomSchema.findOne(filter);
 
-    if(!room)
-    {
+    if (!room) {
       throw Error("Room Not Exist wrong room No");
     }
 
-    const isExist=room.years.find((year)=>{
-      return year.year===Number(req.body.year);
-    })
+    const isExist = room.years.find((year) => {
+      return year.year === Number(req.body.year);
+    });
 
-    if(isExist)
-    {
+    if (isExist) {
       throw Error("Year Already Exist");
     }
 
@@ -119,39 +117,30 @@ module.exports.newMonthPost = async (req, res) => {
       roomRentPaid: 0,
       lightBillRentPaid: 0,
       ExtraPaid: 0,
-      note:"Nothing",
+      note: "Nothing",
     };
-
     const filter = { roomNo: req.body.roomNo };
     let room = await roomSchema.findOne(filter);
 
-    if(!room)
-    {
+    if (!room) {
       throw Error("Not able to find room | room Not exist");
     }
     console.log(room);
-    const year=room.years.find((year)=>{
-      console.log(year.year,"!=",Number(req.body.year));
-      return year.year===Number(req.body.year);
-    })
-
-    if(!year)
-    {
+    const year = room.years.find((year) => {
+      console.log(year.year, "!=", Number(req.body.year));
+      return year.year === Number(req.body.year);
+    });
+    if (!year) {
       throw Error("Year not Exist");
     }
-    
+    const alreadyExist = year.months.find((month) => {
+      return month.month === Number(req.body.month);
+    });
 
-    
-    const alreadyExist=year.months.find( (month)=>{
-       return month.month === Number(req.body.month) ;
-    })
+    if (alreadyExist) {
+      throw Error("Month already exist update insted of adding new");
+    }
 
-      if(alreadyExist)
-      {
-        throw Error("Month already exist update insted of adding new");
-
-      }
-    
     year.months.unshift(month);
     let rooms = new roomSchema(room);
     room = await rooms.save();
@@ -159,7 +148,7 @@ module.exports.newMonthPost = async (req, res) => {
     res.status(200).send(room);
   } catch (err) {
     console.log("error in month creation");
-    console.log(err)
+    console.log(err);
     res.status(401).send(` failed to create ${err} `);
   }
 };
@@ -171,34 +160,30 @@ module.exports.updateMonthPost = async (req, res) => {
 
   try {
     const filter = { roomNo: req.body.roomNo };
-    console.log("details",req.body.month);
+    console.log("details", req.body.month);
     let room = await roomSchema.findOne(filter);
-    if(!room)
-    {
+    if (!room) {
       throw Error("Not able to find room | room Not exist");
     }
-    const year=room.years.find((year)=>{
-      console.log(year.year,"!=",Number(req.body.year));
-      return year.year===Number(req.body.year);
-    })
+    const year = room.years.find((year) => {
+      console.log(year.year, "!=", Number(req.body.year));
+      return year.year === Number(req.body.year);
+    });
 
-    if(!year)
-    {
+    if (!year) {
       throw Error("Year not Exist");
     }
-    
-    const pos= year.months.findIndex((month)=>{
-      return month.month===Number(req.body.month);
-    })
-    console.log("pos is",pos);
-    if(pos===-1)
-    {
+
+    const pos = year.months.findIndex((month) => {
+      return month.month === Number(req.body.month);
+    });
+    console.log("pos is", pos);
+    if (pos === -1) {
       throw Error("Month not Exist to Update");
-      
     }
     let Month = year.months[pos];
     console.log("old month deatail", room);
-    console.log("month detail",Month);
+    console.log("month detail", Month);
 
     Month.tenantIds = req.body?.tenantIds || Month.tenantIds;
     Month.tenantHeadName = req.body?.tenantHeadName || Month.tenantHeadName;
@@ -208,11 +193,9 @@ module.exports.updateMonthPost = async (req, res) => {
     Month.roomRentPaid = req.body.roomRentPaid || Month.roomRentPaid;
     Month.lightBillRentPaid = req.body.lightBillRent || Month.lightBillRent;
     Month.ExtraPaid = req.body.ExtraPaid || Month.ExtraPaid;
-    Month.note=req.body.note || Month.note;
+    Month.note = req.body.note || Month.note;
     console.log("update month detail data", room);
     let rooms = new roomSchema(room);
-
-    
 
     room = await rooms.save();
     console.log("month updated successfully");
@@ -224,4 +207,3 @@ module.exports.updateMonthPost = async (req, res) => {
     res.status(401).send(` failed to update ${err} `);
   }
 };
-

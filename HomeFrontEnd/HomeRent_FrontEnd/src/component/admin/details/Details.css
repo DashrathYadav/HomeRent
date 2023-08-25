@@ -4,13 +4,14 @@
   height: inherit;
   /* background-color: yellow; */
   flex-direction: column;
-  margin-top: 10px;
+  margin-top: 100px;
   margin-left: 10px;
 }
 .Details--roomNoDiv{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  
 }
 .Details--roomNo{
   border: 1px solid gray;

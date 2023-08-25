@@ -1,6 +1,6 @@
 import React from "react";
 import "./Details.css";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 function Details() {
   let data = sessionStorage.getItem("adminDetail");
   data = JSON.parse(data);
@@ -12,14 +12,21 @@ function Details() {
     <div className="Details--container">
       <h1>Details</h1>
       <hr></hr>
+      <br></br>
       <div className="Details--roomNoDiv">
-        {roomArray.map((room) => {
-        return   <Link to={"roomDetail:id"}>
+        {roomArray.map((room,id) => {
+        return   <Link to={`${room}`}>
             <div className="Details--roomNo">
               Room No: {room}
             </div>
+           
           </Link>;
         })}
+      </div>
+      <br></br>
+      <hr></hr>
+      <div>
+        <Outlet/>
       </div>
     </div>
   );

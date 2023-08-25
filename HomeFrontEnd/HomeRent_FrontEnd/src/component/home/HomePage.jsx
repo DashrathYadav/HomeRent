@@ -8,7 +8,7 @@ function HomePage() {
     console.log(roomData);
     roomData=JSON.parse(roomData);
     const years=roomData.years;
-    // console.log(data);
+    
 
   return (
     <div className='homePage--container'>
