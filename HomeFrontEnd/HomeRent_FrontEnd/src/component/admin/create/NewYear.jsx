@@ -4,11 +4,12 @@ import './NewYear.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { toastErrortInvoke, toastSuccesstInvoke } from "../../customToast";
+import { backendURL } from "../../backEndURl";
 function NewYear() {
     const navigate=useNavigate();
     const [roomNo, setRoomNo] = useState("");
     const [year, setYear] = useState("");
-    const backedURL = "http://localhost:3000/";
+    const backedURL = backendURL();
     async function handleAddYear(e) {
       let result = await fetch(backedURL + "createYear", {
         body: JSON.stringify({ roomNo: roomNo,year:year }),

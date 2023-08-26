@@ -6,6 +6,7 @@ import { toastErrortInvoke, toastSuccesstInvoke } from "../../customToast";
 import { useNavigate } from "react-router-dom";
 import { backdropClasses, colors } from "@mui/material";
 import { green } from "@mui/material/colors";
+import { backendURL } from "../../backEndURl";
 
 function NewMonth() {
   const navigate=useNavigate();
@@ -64,7 +65,7 @@ function NewMonth() {
         ...formData,
         tenantIds: optionValue,
       };
-      const backedURL = "http://localhost:3000/";
+      const backedURL = backendURL();
       let result = await fetch(backedURL + "createMonth", {
         body: JSON.stringify(data),
         method: "POST",

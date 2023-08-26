@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import { backendURL } from "../backEndURl";
 
 function LoginOwner() {
-  const backedURL = "http://localhost:3000/";
+  const backedURL =backendURL();
 
   const [password, setpassword] = useState("");
 

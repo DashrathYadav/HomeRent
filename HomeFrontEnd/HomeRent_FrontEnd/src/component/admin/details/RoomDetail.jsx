@@ -5,9 +5,10 @@ import YearDetail from "../../home/Year/YearDetail";
 import { toastErrortInvoke } from "../../customToast";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { backendURL } from "../../backEndURl";
 
 export const roomDataFetch = async ({ params }) => {
-  const backedURL = "http://localhost:3000/";
+  const backedURL = backendURL();
   console.log("params room no", params.roomNo);
   let result = await fetch(backedURL + "login", {
     body: JSON.stringify({ roomNo: params.roomNo }),

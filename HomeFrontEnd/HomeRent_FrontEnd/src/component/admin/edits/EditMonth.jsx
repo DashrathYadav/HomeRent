@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { toastErrortInvoke, toastSuccesstInvoke } from "../../customToast";
 import { useNavigate } from "react-router-dom";
+import { backendURL } from "../../backEndURl";
 
 
 // Mostly copy of NewMonth component 
@@ -64,7 +65,7 @@ function EditMonth() {
         ...formData,
         tenantIds: optionValue,
       };
-      const backedURL = "http://localhost:3000/";
+      const backedURL =backendURL();
       let result = await fetch(backedURL + "updateMonth", {
         body: JSON.stringify(data),
         method: "POST",

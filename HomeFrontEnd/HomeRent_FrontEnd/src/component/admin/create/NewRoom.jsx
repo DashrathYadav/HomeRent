@@ -4,12 +4,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { toastErrortInvoke, toastSuccesstInvoke } from "../../customToast";
 import './NewRoom.css'
+import { backendURL } from "../../backEndURl";
 
 
 function NewRoom() {
   const navigate=useNavigate();
   const [roomNo, setRoomNo] = useState("");
-  const backedURL = "http://localhost:3000/";
+  const backedURL = backendURL();
   async function handleCreateRoom(e) {
     let result = await fetch(backedURL + "createRoom", {
       body: JSON.stringify({ roomNo: roomNo }),

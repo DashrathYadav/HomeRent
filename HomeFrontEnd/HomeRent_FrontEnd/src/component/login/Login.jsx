@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import "./Login.css";
 import { Link, redirect, redirectDocument } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { backendURL } from "../backEndURl";
 
 function Login() {
 
   const dispatch= useDispatch();
 
-  const backedURL = "http://localhost:3000/";
+  const backedURL = backendURL();
 
   const [roomNo, setroomNo] = useState("");
   const [password, setpassword] = useState("");
