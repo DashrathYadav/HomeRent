@@ -2,4 +2,4 @@
 
 -> cross polic setting during deployment.
 
--> Authentication with admin tag and token both
+-> Authentication with admin tag and token both.
