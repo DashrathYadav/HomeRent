@@ -10,15 +10,17 @@ function Dashboard() {
         <div className="Dashboard--viewDetails Dashboard--link">Details</div>
       </Link>
 
-      <Link to={"/create"}>
-        <div className="Dashboard--Create Dashboard--link">Create</div>
+      <Link to={"create"}>
+        <div className="Dashboard--Create Dashboard--link">Add</div>
       </Link>
 
-      <Link to={"/edit"}>
+      <Link to={"edit"}>
         <div className="Dashboard--Edit Dashboard--link">Edit</div>
       </Link>
       </nav>
+      <div className="Dashboard--Outlet">
       <Outlet/>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,11 @@
 .MonthDetail--container{
-    background-color: aqua;
     display: flex;
     flex-direction: column;
-    border: 2px solid violet;
+    border: 2px solid black;
+    margin: 20px;
+    min-width: 300px;
+    font-size: large;
+    line-height: 2rem;
+    padding:5px;
+
 }

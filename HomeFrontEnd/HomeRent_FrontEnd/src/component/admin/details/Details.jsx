@@ -1,6 +1,7 @@
 import React from "react";
 import "./Details.css";
 import { Link, Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 function Details() {
   let data = sessionStorage.getItem("adminDetail");
   data = JSON.parse(data);

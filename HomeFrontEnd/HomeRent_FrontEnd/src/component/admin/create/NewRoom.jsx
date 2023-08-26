@@ -1,87 +1,64 @@
-import { Navigate } from 'react-router-dom';
-import React, { useState } from 'react'
-import { ToastContainer,toast } from 'react-toastify';
-import 'react-toastify/dist/css/bootstrap.min.css';
-
-function toastSuccesstInvoke(message,direction="top-right"){
-  
-  toast.success(`! ${message}`,{
-    position:"top-right",
-    autoClose:3000,
-    hideProgressBar:false,
-    closeOnClick:true,
-    pauseOnHover:true,
-    draggable:true,
-    progress:undefined,
-    theme:'light',
-    
-  })
-}
-
-function toastErrortInvoke(message,direction="top-right"){
-  
-  toast.error(`! ${message}`,{
-    position:"top-right",
-    autoClose:3000,
-    hideProgressBar:false,
-    closeOnClick:true,
-    pauseOnHover:true,
-    draggable:true,
-    progress:undefined,
-    theme:'light',
-    
-  })
-}
-
+import {useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { toastErrortInvoke, toastSuccesstInvoke } from "../../customToast";
+import './NewRoom.css'
 
 
 function NewRoom() {
+  const navigate=useNavigate();
+  const [roomNo, setRoomNo] = useState("");
+  const backedURL = "http://localhost:3000/";
+  async function handleCreateRoom(e) {
+    let result = await fetch(backedURL + "createRoom", {
+      body: JSON.stringify({ roomNo: roomNo }),
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
 
-    const [roomNo,setRoomNo]=useState('');
+    if (result.status === 200) {
+      let adminDetail = sessionStorage.getItem("adminDetail");
+      console.log(adminDetail);
+      adminDetail = JSON.parse(adminDetail);
+      adminDetail.rooms.unshift(roomNo);
+      adminDetail = JSON.stringify(adminDetail);
+      sessionStorage.setItem('adminDetail',adminDetail);
+      toastSuccesstInvoke("Room Created Successfully");
 
-   async function  handleCreateRoom(e)
-    {
-        let result = await fetch(backedURL + "createRoom", {
-            body: JSON.stringify({roomNo:roomNo}),
-            method: "POST",
-            credentials:'include',
-            headers: {
-              "Content-type": "application/json; charset=UTF-8",
-            },
-          });
-
-          if(result.status===200)
-          {
-
-            let roomData=sessionStorage.getItem('roomData');
-            console.log(roomData);
-            roomData=JSON.parse(roomData);
-            roomData.years.unshift(roomNo);
-            roomData=JSON.stringify(roomData);
-            sessionStorage.setItem(roomData);
-            toastSuccesstInvoke("Room Created Successfully");
-             return <Navigate to={"/admin"}/>
-          }
-          else{
-            console.log(result);
-            toastErrortInvoke(result);
-            return;
-          }
+      setTimeout(()=>{navigate('/admin/roomDetails');},4000); 
+   
+    } else {
+      console.log(result);
+      toastErrortInvoke(result);
+      return;
     }
+  }
 
   return (
-    <div className='NewRoom--container'>
-        <h1>Create Room</h1>
-        <div>
-        Enter Room No: 
-        <input type="number" onChange={
-            (e) => {
-                setRoomNo(e.target.value)
-        }} ></input>
-        <button onClick={handleCreateRoom} >Create Room</button>
-        </div>
+    <div className="NewRoom--container">
+      <h1>Add Room</h1>
+      <div className="newRoom--form">
+      <table><tr><td>
+        Enter Room No:</td><td> 
+        <input
+          type="number"
+          onChange={(e) => {
+            setRoomNo(e.target.value);
+          }}
+        ></input>
+        <br></br>
+        <br></br>
+        </td></tr>
+        </table>
+      </div>
+        <button style={{padding:'10px',backgroundColor:"#12c9ff",color:"white" }} onClick={handleCreateRoom}>+ Add Room</button>
+      <ToastContainer />
     </div>
-  )
+  );
 }
 
-export default NewRoom
+export default NewRoom;

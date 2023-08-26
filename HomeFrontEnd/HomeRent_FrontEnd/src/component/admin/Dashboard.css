@@ -31,3 +31,7 @@
 .Dashboard--link:active{
     background-color: grey;
 }
+
+.Dashboard--Outlet{
+    margin-top: 100px;
+}

@@ -12,6 +12,10 @@ import Details from "./component/admin/details/Details";
 import RoomDetail, { roomDataFetch } from "./component/admin/details/RoomDetail";
 import CreateOptions from "./component/admin/create/CreateOptions";
 import NewRoom from "./component/admin/create/NewRoom";
+import NewMonth from "./component/admin/create/NewMonth";
+import NewYear from "./component/admin/create/NewYear";
+import EditOptions from "./component/admin/edits/EditOptions";
+import EditMonth from "./component/admin/edits/EditMonth";
 
 
 const router=createBrowserRouter(
@@ -31,7 +35,9 @@ const router=createBrowserRouter(
         <Route path="newRoom" element={<NewRoom/>}/>
         <Route path="newYear" element={<NewYear/>}/>
         <Route path="newMonth" element={<NewMonth/>}/>
-
+      </Route>
+      <Route path="edit" element = {<EditOptions/>}>
+        <Route path="EditMonth" element={<EditMonth/>} />
       </Route>
       
     </Route>

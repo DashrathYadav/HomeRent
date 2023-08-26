@@ -1,0 +1,23 @@
+.newMonth--form {
+  font-size: large;
+}
+
+.newMonth--form table {
+  table-layout: fixed;
+}
+.newMonth--form td {
+  width: 35%;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.newMonth--form input {
+  width: 80px;
+  padding: 10px;
+  font-size: medium;
+}
+
+.newMonth--form input::placeholder {
+  font-size: xx-small;
+}

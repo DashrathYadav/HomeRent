@@ -1,13 +1,13 @@
 import { useState } from "react";
-import "./NewMonth.css";
+import "../create/NewMonth.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { toastErrortInvoke, toastSuccesstInvoke } from "../../customToast";
 import { useNavigate } from "react-router-dom";
-import { backdropClasses, colors } from "@mui/material";
-import { green } from "@mui/material/colors";
 
-function NewMonth() {
+
+// Mostly copy of NewMonth component 
+function EditMonth() {
   const navigate=useNavigate();
   const [optionValue, setOptionValue] = useState([]);
   const [formData, setFromData] = useState({
@@ -58,14 +58,14 @@ function NewMonth() {
     setOptionValue(arr);
   };
 
-  const handleSubmit = async (e) => {
+  const handleEditSubmit = async (e) => {
     try {
       const data = {
         ...formData,
         tenantIds: optionValue,
       };
       const backedURL = "http://localhost:3000/";
-      let result = await fetch(backedURL + "createMonth", {
+      let result = await fetch(backedURL + "updateMonth", {
         body: JSON.stringify(data),
         method: "POST",
         credentials: "include",
@@ -74,23 +74,23 @@ function NewMonth() {
         },
       });
       if (!result.ok) {        
-        throw Error(`🗴 Failed to Crete new Month ${result}`);
+        throw Error(`Failed to Edit  Month ${result}`);
       } else {
         console.log(result);
-        toastSuccesstInvoke("✓ New Month Added ");
+        toastSuccesstInvoke("edited Successfully");
         setTimeout(()=>{navigate('/admin/roomDetails');},4000);
         return;
       }
     } catch (err) {
       //handling error display
-      toastErrortInvoke(`🗴 Failed to create new room`);
+      toastErrortInvoke(`Failed to Edit Month`);
       console.log("error in handleLoginFormSubmit", err);
     }
   };
 
   return (
     <div className="newMonth--container">
-    <h1>Add Month</h1>
+    <h1>Edit Month</h1>
     <br></br>
     <table>
       <div className="newMonth--form">
@@ -254,11 +254,11 @@ function NewMonth() {
       <hr></hr>
       <hr></hr>
       <br></br>
-      <button style={{padding:'10px',backgroundColor:"#12c9ff",color:"white" }} onClick={handleSubmit}>+ Add Month</button>
+      <button style={{padding:'10px',backgroundColor:"#12c9ff",color:"white" }} onClick={handleEditSubmit}>+ Edit Month</button>
       <ToastContainer/>
       <br></br>
     </div>
   );
 }
 
-export default NewMonth;
+export default EditMonth;

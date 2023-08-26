@@ -2,6 +2,9 @@ import React from "react";
 import "./RoomDetail.css";
 import { useLoaderData, useParams } from "react-router-dom";
 import YearDetail from "../../home/Year/YearDetail";
+import { toastErrortInvoke } from "../../customToast";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 export const roomDataFetch = async ({ params }) => {
   const backedURL = "http://localhost:3000/";
@@ -19,17 +22,31 @@ export const roomDataFetch = async ({ params }) => {
 };
 
 function RoomDetail() {
+  const navigate = useNavigate();
   const roomData = useLoaderData();
   console.log("got room data", roomData.years);
-  const years=roomData.years;
-  return <div className="RoomDetail--container">
-    <div className="RoomDetail--room">
-    { years.map( (year,id)=>{
-        return <YearDetail id={id} data={year}/>
-        } )
-        }
+  if (!roomData.years) {
+    toastErrortInvoke(`Failed to fetch room Data}`);
+    setTimeout(() => {
+      navigate("/admin/roomDetails");
+    }, 4000);
+    return (
+      <div>
+        Error
+        <ToastContainer/>
+      </div>
+    );
+  }
+  const years = roomData.years;
+  return (
+    <div className="RoomDetail--container">
+      <div className="RoomDetail--room">
+        {years.map((year, id) => {
+          return <YearDetail id={id} data={year} />;
+        })}
+      </div>
     </div>
-  </div>;
+  );
 }
 
 export default RoomDetail;
