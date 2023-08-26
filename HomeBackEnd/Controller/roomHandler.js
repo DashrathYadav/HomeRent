@@ -52,7 +52,7 @@ module.exports.newRoomPost = async (req, res) => {
 
 // post request for creating new Year.
 module.exports.newYearPost = async (req, res) => {
-  // pass parametes roomNo , yearNo,month
+  // pass parametes roomNo , yearNo
   try {
     const yearData = {
       year: Number(req.body.year),
@@ -109,15 +109,15 @@ module.exports.newMonthPost = async (req, res) => {
   try {
     const month = {
       month: Number(req.body.month),
-      tenantHeadName: req.body.tenantName,
-      tenantIds: [103],
-      roomRent: req.body.roomRent, // later implement default value  feature.
-      members: req.body.members,
-      lightBillRent: req.body.lightBillRent,
-      roomRentPaid: 0,
-      lightBillRentPaid: 0,
-      ExtraPaid: 0,
-      note: "Nothing",
+      tenantHeadName: req.body.tenantHeadName || "",
+      tenantIds: req.body.tenantIds || [],
+      roomRent: req.body.roomRent || 0, // later implement default value  feature.
+      members: req.body.members || 0,
+      lightBillRent: req.body.lightBillRent || 0,
+      roomRentPaid: req.body.roomRentPaid || 0,
+      lightBillRentPaid: req.body.lightBillRent || 0,
+      ExtraPaid: req.body.ExtraPaid || 0,
+      note: req.body.note || "Nothing",
     };
     const filter = { roomNo: req.body.roomNo };
     let room = await roomSchema.findOne(filter);
@@ -185,7 +185,11 @@ module.exports.updateMonthPost = async (req, res) => {
     console.log("old month deatail", room);
     console.log("month detail", Month);
 
-    Month.tenantIds = req.body?.tenantIds || Month.tenantIds;
+    Month.tenantIds = Month.tenantIds;
+    //checking empty array of tenants.
+    if (req.body?.tenantIds) {
+      if (req.body?.tenantIds.length > 0) Month.tenantIds = req.body?.tenantIds;
+    }
     Month.tenantHeadName = req.body?.tenantHeadName || Month.tenantHeadName;
     Month.roomRent = req.body.roomRent || Month.roomRent; // later implement default value  feature.
     Month.members = req.body.members || Month.members;

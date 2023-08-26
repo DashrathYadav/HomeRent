@@ -60,6 +60,7 @@ module.exports.login = async (req, res) => {
         if (err) {
           console.log("token not match");
           res.status(401).send(`token not match Invalid credintial + ${err}`);
+          return;
         }
         res.status(201).send(room);
         return;
