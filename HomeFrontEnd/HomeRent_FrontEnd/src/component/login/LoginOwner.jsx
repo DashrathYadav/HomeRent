@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { backendURL } from "../backEndURl";
 
 function LoginOwner() {
   const backedURL =backendURL();
+ const navigate=useNavigate();
 
   const [password, setpassword] = useState("");
 
@@ -27,7 +28,9 @@ function LoginOwner() {
        result= JSON.stringify(result);
        console.log(result);   
         sessionStorage.setItem('adminDetail',result);
-        location.href='/admin';
+        // location.href='/admin';
+        navigate('/admin');
+        
       }
     } catch (err) {
       //handling error display

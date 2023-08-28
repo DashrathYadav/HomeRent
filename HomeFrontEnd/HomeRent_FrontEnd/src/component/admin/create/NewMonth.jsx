@@ -66,6 +66,7 @@ function NewMonth() {
         tenantIds: optionValue,
       };
       const backedURL = backendURL();
+
       let result = await fetch(backedURL + "createMonth", {
         body: JSON.stringify(data),
         method: "POST",

@@ -5,21 +5,22 @@ import "./Dashboard.css";
 function Dashboard() {
   return (
     <div className="Dashboard--container">
-    <nav className="Dashboard--nav">
-      <Link to={"roomDetails"}>
-        <div className="Dashboard--viewDetails Dashboard--link">Details</div>
-      </Link>
+      <nav className="Dashboard--nav">
+        <Link to={"roomDetails"}>
+          <div className="Dashboard--viewDetails Dashboard--link">Details</div>
+        </Link>
 
-      <Link to={"create"}>
-        <div className="Dashboard--Create Dashboard--link">Add</div>
-      </Link>
+        <Link to={"create"}>
+          <div className="Dashboard--Create Dashboard--link">Add</div>
+        </Link>
 
-      <Link to={"edit"}>
-        <div className="Dashboard--Edit Dashboard--link">Edit</div>
-      </Link>
+        <Link to={"edit"}>
+          <div className="Dashboard--Edit Dashboard--link">Edit</div>
+        </Link>
+       
       </nav>
       <div className="Dashboard--Outlet">
-      <Outlet/>
+        <Outlet />
       </div>
     </div>
   );

@@ -9,13 +9,16 @@ const cookieParser = require("cookie-parser");
 const roomRoutes = require("./Routes/roomRoutes");
 const tenantRoutes = require("./Routes/tenantRoutes");
 const adminSchema = require("./Schema/adminSchema");
-
+// 
+// https://homerent.netlify.app
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin:"https://homerent.netlify.app",
     credentials: true,
   })
-);
+);  
+
+
 
 mongo.connect(process.env.DB_URL_DASHRATH);
 mongo.connection.on("error", (err) => {

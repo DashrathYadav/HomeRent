@@ -13,6 +13,7 @@ module.exports.adminAuthorize = async (req, res, next) => {
         res.status(401).send(`token not match Invalid credintial + ${err}`);
         return;
       } else {
+        console.log("token matched",token);
         next();
         return;
       }

@@ -8,7 +8,7 @@ function EditOptions() {
     <div className='EditOptions--options'>
         {/* <Link to={"EditRoom"}> <span className='EditOptions--span'> New Room </span></Link> */}
         {/* <Link to={"EditYear"}> <span className='EditOptions--span'> New Year </span></Link> */}
-        <Link to={"EditMonth"}> <span style={{backgroundColor:"purple"}} className='EditOptions--span'> Edit Month </span></Link>
+        <Link to={"/admin/edit/EditMonth"}> <span style={{backgroundColor:"purple"}} className='EditOptions--span'> Edit Month </span></Link>
         </div>
         <div className='EditOptions--outletContainer'>
         <br></br>

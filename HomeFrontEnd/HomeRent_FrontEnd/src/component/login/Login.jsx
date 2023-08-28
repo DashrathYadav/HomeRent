@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link, redirect, redirectDocument } from "react-router-dom";
+import { Link, redirect, redirectDocument, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { backendURL } from "../backEndURl";
 
 function Login() {
 
   const dispatch= useDispatch();
-
+  const navigate=useNavigate();
+  
+  
   const backedURL = backendURL();
-
   const [roomNo, setroomNo] = useState("");
   const [password, setpassword] = useState("");
-
+  
   async function handleLoginFormSubmit(e) {
     try {
       const data = {
@@ -34,7 +35,9 @@ function Login() {
         result=JSON.stringify(result);
         console.log("login result",result);
         sessionStorage.setItem('roomData',result);
-        location.href='/home';
+        // location.href='/home';
+        navigate('/home')
+
 
       }
     } catch (err) {
@@ -81,6 +84,7 @@ function Login() {
         ></input>
         <span>
           <Link to={"/loginOwner"}> Owner ? </Link>{" "}
+          {/* <a href="/loginOwner">Owner ?</a> */}
         </span>
         <br></br>
         <button

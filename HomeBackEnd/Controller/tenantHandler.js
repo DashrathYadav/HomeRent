@@ -100,9 +100,11 @@ module.exports.adminLogin = async (req, res) => {
     console.log("token is", token);
     console.log("admin login success");
     res
-      .cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 }) //  hour
+      .cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000, sameSite: 'none', secure: true }) //  hour
       .status(200)
       .send(admin);
+      
+
   } catch (err) {
     console.log("error in login", err);
     res.status(400).send(err);

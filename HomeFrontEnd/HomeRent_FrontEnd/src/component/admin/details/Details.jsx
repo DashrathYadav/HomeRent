@@ -21,7 +21,7 @@ function Details() {
               Room No: {room}
             </div>
            
-          </Link>;
+          </Link>;   
         })}
       </div>
       <br></br>
