@@ -14,7 +14,7 @@ module.exports.createTenant = async (req, res) => {
     
     console.log("create tenanat hit");
     console.log(req.file);
-    console.log(req.file?.AdharNumber);
+    console.log(req.body);
     return ;
     // if no date provided default current date
     const defaultDate=`${new Date().getDate}-${new Date().getMonth}-${new Date().getFullYear}`;
