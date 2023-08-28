@@ -11,23 +11,39 @@ function createToken(id) {
 
 module.exports.createTenant = async (req, res) => {
   try {
+    
+    console.log("create tenanat hit");
+    console.log(req.file);
+    console.log(req.file?.AdharNumber);
+    return ;
+    // if no date provided default current date
+    const defaultDate=`${new Date().getDate}-${new Date().getMonth}-${new Date().getFullYear}`;
+
     const tenantData = {
       AdharNumber: req.body.AdharNumber,
       tenantName: req.body.tenantName,
       role: "tenant",
-      tenantProfileUrl: req.body.tenantProfileUrl,
-      tenantDoc: req.body.tenantDoc,
-      tenantMobile: req.body.tenantMobile,
-      deposited: req.body.Deposited,
-      registeredOn: new Date(),
-      lastDay: new Date(),
-      roomNo: req.body.roomNo,
+      tenantProfileUrl: req.body.tenantProfileUrl|| "",
+      tenantDoc: req.body.tenantDoc ||"",
+      tenantMobile: req.body.tenantMobile || "" ,
+      villageAddress:req.body.villageAddress||" ",
+      deposited: req.body.Deposited || 0,
+      email:req.body.email || "",
+      registeredOn: req.body.registeredOn || defaultDate ,
+      lastDay: req.body.lastDay|| "N/A",
+      roomNo: req.body.roomNo || 0,
+      note:req.body.note || " ",
+
     };
 
     let tenant = new tenantSchema(tenantData);
     let result = await tenant.save();
 
-    res.status(200).send("Tenent created successfully " + result);
+    const response={
+      msg:"Tenent created successfully ",
+      result:result,
+    }
+    res.status(200).send(response);
   } catch (err) {
     console.log("Error in creating Tenant", err);
   }

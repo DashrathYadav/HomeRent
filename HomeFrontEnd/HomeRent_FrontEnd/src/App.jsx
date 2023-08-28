@@ -23,11 +23,12 @@ import NewYear from "./component/admin/create/NewYear";
 import EditOptions from "./component/admin/edits/EditOptions";
 import EditMonth from "./component/admin/edits/EditMonth";
 import LanginPage from "./component/LandingPage";
+import CreateTenent from "./component/admin/tenents/CreateTenent";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
-      <Route path="/" element={<LanginPage />} />
+      <Route path="/" element={<CreateTenent />} />
       <Route path="/login" element={<Login />} />
       <Route path="/loginOwner" element={<LoginOwner />} />
       <Route path="/home" element={<HomePage />} />
