@@ -18,7 +18,6 @@ function CreateTenent() {
     tenantProfileUrl: "",
     tenantMobile: "",
     villageAddress: "",
-    tenantDoc: "",
     deposited: "",
     email: "",
     registeredOn: "",
@@ -98,12 +97,11 @@ console.log(file);
   };
 
   const onSelectDocs = (e) => {
-    if (!e.target.file || e.target.file.length === 0) {
+    if (!e.target.files || e.target.files.length === 0) {
       setSelectedDocs(undefined);
       return;
     }
     setSelectedDocs(e.target.files[0]);
-    return;
   };
   return (
     <>

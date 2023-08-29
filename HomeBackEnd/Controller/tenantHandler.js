@@ -3,6 +3,7 @@ const roomSchema = require("../Schema/roomSchema");
 const tenantSchema = require("../Schema/tenantSchema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const {cloudinaryUpload } = require("../middleware/cloudnaryUpload");
 
 const maxAge = 60 * 60; //1 hour
 function createToken(id) {
@@ -11,11 +12,22 @@ function createToken(id) {
 
 module.exports.createTenant = async (req, res) => {
   try {
-    
+
+    console.log("cloud name",process.env.CLOUD_NAME)
+    console.log("cloud Api",process.env.API_KEY)
+    console.log("cloud secret",process.env.API_SECRET)
+
     console.log("create tenanat hit");
-    console.log(req.file);
+    console.log("pic",req.files.tenantPic[0]);
+    console.log("file",req.files.tenentDocs[0]);
     console.log(req.body);
-    return ;
+    let tenantProfileUrl= await cloudinaryUpload(req.files.tenantPic[0],"tenantProfile");
+    tenantProfileUrl=tenantProfileUrl.url;
+    console.log("tenentProfile url",tenantProfileUrl);
+
+    let tenantDoc=await cloudinaryUpload(req.files.tenentDocs[0],"tenantDocs");
+    tenantDoc=tenantDoc.url;
+    console.log(" tenantDoc url ",tenantDoc);
     // if no date provided default current date
     const defaultDate=`${new Date().getDate}-${new Date().getMonth}-${new Date().getFullYear}`;
 
@@ -23,8 +35,8 @@ module.exports.createTenant = async (req, res) => {
       AdharNumber: req.body.AdharNumber,
       tenantName: req.body.tenantName,
       role: "tenant",
-      tenantProfileUrl: req.body.tenantProfileUrl|| "",
-      tenantDoc: req.body.tenantDoc ||"",
+      tenantProfileUrl: tenantProfileUrl || "",
+      tenantDoc:tenantDoc ||"",
       tenantMobile: req.body.tenantMobile || "" ,
       villageAddress:req.body.villageAddress||" ",
       deposited: req.body.Deposited || 0,
@@ -45,7 +57,14 @@ module.exports.createTenant = async (req, res) => {
     }
     res.status(200).send(response);
   } catch (err) {
+
     console.log("Error in creating Tenant", err);
+    const response={
+      msg:"failed to create tenent",
+      result:err,
+    }
+
+    res.status(400).send(response);
   }
 };
 
