@@ -1,5 +1,5 @@
 export const backendURL=()=>{
-    return "http://localhost:3000/" ;
+    return "https://homerent-bcu9.onrender.com/" ;
 }
 
 // https://homerent-bcu9.onrender.com/

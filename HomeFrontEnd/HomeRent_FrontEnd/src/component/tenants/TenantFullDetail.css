@@ -30,3 +30,25 @@
     border-spacing: 10px 15px;
     font-family: 'Courier New', Courier, monospace;
 }
+.TenantFullDetail--pdfView{
+    width: 400px;
+    height: 400px;
+}
+
+@media only screen and (max-width: 600px){
+
+    .TenantFullDetail--tenantProfile{
+        width: 300px;
+    }
+
+    .TenantFullDetail--pdfView{
+        width: 250px;
+        height: 400px;
+    }
+
+    .TenantFullDetail--table{
+     
+        border-spacing: 10px 25px;
+        font-family: 'Courier New', Courier, monospace;
+    }
+}

@@ -132,7 +132,7 @@ function CreateTenent() {
         <br></br>
         <br></br>
         <div className="CreateTenent--fileUpload">
-          <label>Addhard Card / Docs </label>
+          <label>Adhard Card / Docs </label>
           <br></br>
           <br></br>
           <input

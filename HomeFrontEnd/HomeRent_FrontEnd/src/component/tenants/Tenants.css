@@ -1,27 +1,41 @@
-.Tenants--Container{
+.Tenants--nav{
     display: flex;
-    flex-direction: column;
-    width: 100vw;
-    justify-content: center;
-    padding: 10px;
-    margin: 10px;
-  
-}
-
-.Tenants--Links
-{
-    display: flex;
+    color: black;
+    justify-content: space-evenly;
+    padding: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.8);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.7);
+    flex-wrap: wrap;
+    position: fixed;
     width: 100%;
-    justify-content: space-around;
+    top: 0%;
+    background-color: white;
+
 
 }
-.Tenants--span{
-    padding:10px;
-    background-color:grey;
-    color: white;
+
+.Tenants--link{
+    
+    padding: 10px;
+    color: black;
+    border: 1px solid gray;
+    background-color: lightgrey;
+    border-radius: 3px;
+    opacity: 1;
+    margin: 2px;
+
+}
+.Tenants--link:hover{
+    opacity: .7;
+}
+.Tenants--link:active{
+    background-color: grey;
 }
 
 .Tenants--outlet{
+    margin-top: 100px;
     display: flex;
+    flex-direction: column;
+    align-content: center;
     justify-content: center;
 }

@@ -75,10 +75,8 @@ function TenantFullDetail() {
               <td>Docs :</td>
               <td>
                 {" "}
-                <iframe
+                <iframe className="TenantFullDetail--pdfView"
                   src={data.tenantDoc}
-                  width="400"
-                  height="400"
                 ></iframe>{" "}
               </td>
             </tr>

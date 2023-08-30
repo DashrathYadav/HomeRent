@@ -7,10 +7,19 @@ function Tenants() {
     
 
   return <div className="Tenants--Container">
-    <div className="Tenants--Links">
-      <Link to={"createTenant"}><span className="Tenants--span" > +  New Tenant</span></Link>
-      <Link to={"tenantsList"}><span className="Tenants--span ">  view Tenant</span></Link>
-    </div>
+    <nav className="Tenants--nav">
+    <Link to={"createTenant"}>
+          <div className="Tenants--viewDetails Tenants--link">+ New Tenant</div>
+        </Link>
+
+        <Link to={"tenantsList"}>
+          <div className="Tenants--Create Tenants--link">View Tenant</div>
+        </Link>
+
+        <Link to={"/section"}>
+          <div className="Tenants--Edit Tenants--link">Home</div>
+        </Link>
+    </nav>
     <br></br>
     <hr></hr>
     <br></br>
