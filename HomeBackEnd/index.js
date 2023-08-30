@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser");
 const roomRoutes = require("./Routes/roomRoutes");
 const tenantRoutes = require("./Routes/tenantRoutes");
 const adminSchema = require("./Schema/adminSchema");
-// 
+// http://localhost:5173
 // https://homerent.netlify.app
 app.use(
   cors({

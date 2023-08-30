@@ -48,45 +48,37 @@ function TenantFullDetail() {
             </tr>
             <tr>
               <td> Name:</td>
-              <td>{data.tenantName}</td>
+              <td><span>{data.tenantName}</span></td>
             </tr>
             <tr>
               <td>email:</td>
-              <td>{data.email}</td>
+              <td><span>{data.email}</span></td>
             </tr>
             <tr>
               <td>Phone NO : </td>
-              <td>{data.tenantMobile}</td>
+              <td><span>{data.tenantMobile}</span></td>
             </tr>
 
             <tr>
-              <td>AdharNumber :</td>
-              <td>{data.AdharNumber}</td>
+              <td><span>AdharNumber:</span></td>
+              <td><span>{data.AdharNumber}</span></td>
             </tr>
 
             <tr>
               <td>Docs Url :</td>
               <td>
                 {" "}
-                <a href={data.tenantDoc}>Link</a>
+                <a target="_blank" href={data.tenantDoc}>Link</a>
               </td>
             </tr>
-            <tr>
-              <td>Docs :</td>
-              <td>
-                {" "}
-                <iframe className="TenantFullDetail--pdfView"
-                  src={data.tenantDoc}
-                ></iframe>{" "}
-              </td>
-            </tr>
+            (y-m-d) 
             <tr>
               <td>registered On :</td>
-              <td>{data.registeredOn} (y-m--d) </td>
+              <td>{data.registeredOn} </td>
             </tr>
             <tr>
               <td>lastDay :</td>
-              <td>{data.lastDay} (y-m-d) </td>
+              <td>{data.lastDay}  </td>
             </tr>
 
             <tr>
@@ -100,7 +92,7 @@ function TenantFullDetail() {
 
             <tr>
               <td>Note :</td>
-              <td>{data.note}</td>
+              <td><span>{data.note}</span></td>
             </tr>
           </table>
         </div>

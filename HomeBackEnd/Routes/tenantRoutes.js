@@ -13,7 +13,7 @@ const router = Router();
 
 router.post("/createTenant",multerUpload.fields([{name:'tenantPic', maxCount:1},{name:'tenentDocs',maxCount:1}]), createTenant);
 router.get("/fetchTenantList",fetchTenantList)
-router.post("/fetchFullTenantDetail",fetchFullTenantDetail)
+router.post("/",fetchFullTenantDetail)
 
 // router.post("/updateTenant",updateTenant);
 // router.post("/deleteTenant",deleteTenant);
