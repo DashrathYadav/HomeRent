@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./CreateTenent.css";
 import axios from "axios";
-import profile from "../../../assets/tenant.png";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { backendURL } from "../../backEndURl";
+import profile from "../../assets/tenant.png";
+import { backendURL } from "../backEndURl";
+import { toastErrortInvoke, toastSuccesstInvoke } from "../customToast";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 function CreateTenent() {
-  const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState();
   const [selectedDocs, setSelectedDocs] = useState();
   const [preview, setPreview] = useState();
@@ -50,18 +50,23 @@ function CreateTenent() {
     file.append("lastDay", formData.lastDay);
     file.append("roomNo", formData.roomNo);
     file.append("note", formData.note);
-    const backedURL = backendURL()+'createTenant';
-console.log(file);
+    const backedURL = backendURL() + "createTenant";
+    console.log(file);
     axios
       .post(backedURL, file, {
-        withCredentials:true,
-        headers: {"Access-Control-Allow-Origin": "*" },
+        withCredentials: true,
+        headers: { "Access-Control-Allow-Origin": "*" },
       })
       .then((response) => {
-        console.log(response)
+        console.log(response);
+        toastSuccesstInvoke("Tenant Created successfully");
+        setTimeout(() => {
+          navigate("/tenants");
+        }, 4000);
       })
       .catch((error) => {
         setErrorMessage("An error occurred. Please try again later.");
+        toastErrortInvoke("failed to create tenant");
         console.log(err);
       });
   };
@@ -199,10 +204,9 @@ console.log(file);
             value={formData.registeredOn}
             onChange={handleInputChange}
           ></input>
-            <br></br>
-            <label>Last Date:</label>
+          <br></br>
+          <label>Last Date:</label>
           <input
-            
             type="date"
             name="lastDay"
             required
@@ -236,8 +240,18 @@ console.log(file);
             {errorMessage}
           </div>
         )}
-        <button onClick={handleSignUp}>Create Tenent</button>
+        <button
+          style={{
+            padding: "10px",
+            backgroundColor: "#1317EC",
+            color: "white",
+          }}
+          onClick={handleSignUp}
+        >
+          Create Tenent
+        </button>
       </div>
+      <ToastContainer />
     </>
   );
 }

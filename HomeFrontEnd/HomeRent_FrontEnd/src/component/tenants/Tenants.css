@@ -1,0 +1,27 @@
+.Tenants--Container{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+  
+}
+
+.Tenants--Links
+{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+
+}
+.Tenants--span{
+    padding:10px;
+    background-color:grey;
+    color: white;
+}
+
+.Tenants--outlet{
+    display: flex;
+    justify-content: center;
+}

@@ -5,4 +5,4 @@
 -> Authentication with admin tag and token both.
 
 
-authentication during create tenent
+authentication during create tenent ,fetch tenant.

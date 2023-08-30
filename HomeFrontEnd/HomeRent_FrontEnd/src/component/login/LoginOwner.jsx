@@ -28,8 +28,8 @@ function LoginOwner() {
        result= JSON.stringify(result);
        console.log(result);   
         sessionStorage.setItem('adminDetail',result);
-        // location.href='/admin';
-        navigate('/admin');
+        navigate('/section');
+        // navigate('/admin');
         
       }
     } catch (err) {

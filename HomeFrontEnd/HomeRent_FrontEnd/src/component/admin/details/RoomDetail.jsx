@@ -8,20 +8,21 @@ import { ToastContainer } from "react-toastify";
 import { backendURL } from "../../backEndURl";
 
 export const roomDataFetch = async ({ params }) => {
-  const backedURL = backendURL();
-
-
-  console.log("params room no", params.roomNo);
-  let result = await fetch(backedURL + "login", {
-    body: JSON.stringify({ roomNo: params.roomNo }),
-    method: "POST",
-    credentials: "include",
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  });
-
-  return result;
+  try {
+    const backedURL = backendURL();
+    console.log("params room no", params.roomNo);
+    let result = await fetch(backedURL + "login", {
+      body: JSON.stringify({ roomNo: params.roomNo }),
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+    return result;
+  } catch (err) {
+    console.log("error in room data fetching ", err);
+  }
 };
 
 function RoomDetail() {
@@ -36,7 +37,7 @@ function RoomDetail() {
     return (
       <div>
         Error
-        <ToastContainer/>
+        <ToastContainer />
       </div>
     );
   }
