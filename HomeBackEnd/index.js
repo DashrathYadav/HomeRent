@@ -14,7 +14,7 @@ const adminSchema = require("./Schema/adminSchema");
 // https://homerent.netlify.app
 app.use(
   cors({
-    origin:"https://homerent.netlify.app",
+    origin:"http://localhost:5173",
     credentials: true,
   })
 );  
