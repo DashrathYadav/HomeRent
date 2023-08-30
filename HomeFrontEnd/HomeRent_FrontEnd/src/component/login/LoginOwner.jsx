@@ -28,8 +28,8 @@ function LoginOwner() {
        result= JSON.stringify(result);
        console.log(result);   
         sessionStorage.setItem('adminDetail',result);
-        // location.href='/admin';
-        navigate('/admin');
+        navigate('/section');
+        // navigate('/admin');
         
       }
     } catch (err) {
@@ -45,7 +45,7 @@ function LoginOwner() {
   return (
     <div className="login--container">
       <div className="login--form" action="" method="post">
-        <h1 className="login--title">Login</h1>
+        <h1 className="login--title">Owner</h1>
         <hr
           style={{
             color: "black",

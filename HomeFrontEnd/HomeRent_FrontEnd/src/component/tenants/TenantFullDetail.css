@@ -1,0 +1,54 @@
+.TenantFullDetail--container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+.TenantFullDetail--page{
+    border: 1px solid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.TenantFullDetail--imgSection{
+    padding: 5px;
+    margin: 5px;
+    
+}
+
+.TenantFullDetail--infoSection{
+    padding: 5px;
+    margin:5px;
+}
+.TenantFullDetail--tenantProfile{
+    width: 400px;
+}
+.TenantFullDetail--table{
+    border-collapse: separate;
+    border-spacing: 10px 15px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.TenantFullDetail--pdfView{
+    width: 400px;
+    height: 400px;
+}
+
+@media only screen and (max-width: 600px){
+
+    .TenantFullDetail--tenantProfile{
+        width: 300px;
+    }
+
+    .TenantFullDetail--pdfView{
+        width: 250px;
+        height: 400px;
+    }
+
+    .TenantFullDetail--table{
+     
+        border-spacing: 10px 25px;
+        font-family: 'Courier New', Courier, monospace;
+    }
+}

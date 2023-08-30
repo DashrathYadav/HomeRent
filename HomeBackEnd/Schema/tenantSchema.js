@@ -13,10 +13,13 @@ const tenantSchema = new mongoose.Schema({
   tenantProfileUrl: String,
   tenantDoc: String,
   tenantMobile: String,
+  villageAddress:String,
+  email:String,
   deposited: Number,
-  registeredOn: Date,
-  lastDay: Date,
+  registeredOn: String,
+  lastDay: String,
   roomNo: Number,
+  note:String,
 });
 
 module.exports = mongoose.model("tenants", tenantSchema);

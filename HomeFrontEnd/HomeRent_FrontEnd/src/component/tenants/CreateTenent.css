@@ -1,0 +1,113 @@
+.CreateTenent--MainContainer {
+    display: flex;  
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+
+    margin: 10px;
+    padding: 30px;
+  }
+
+
+.CreateTenent--form{
+    display: flex;
+    padding: 2%;
+    flex-direction: column;
+}
+
+.CreateTenent--form input, .form textarea {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+
+.CreateTenent--imagecontainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.CreateTenent--profile{
+ max-width: 200px;
+  max-height: 200px;
+  cursor: pointer;
+}
+
+
+
+ 
+.CreateTenent--btn {
+  background-color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  color: black;
+  position: relative;
+  overflow: hidden;
+}
+
+.CreateTenent--btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.CreateTenent--btn::before {
+  content: "";
+  position: absolute;
+  background-color: orangered;
+  width: 0;
+  height: 0;
+  left: var(--xPos);
+  top: var(--yPos);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  transition: width 0.5s, height 0.5s;
+}
+
+.CreateTenent--btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.CreateTenent--Login--signup{
+  margin-top: 20px;
+  padding: 20px;
+}
+.CreateTenent--Login--signup-span{
+  position: relative;
+  cursor:pointer;
+  user-select:none;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s;
+
+}
+.CreateTenent--Login--error-message{
+  color: red;
+}
+.CreateTenent--Login--signup-span:hover{
+  color: blue;
+  top: 1px;
+}
+
+#profileimage{
+  display: none;
+}
+
+/* .SignUp--lessMargine{
+  margin-top: 5px;
+  padding: 0;
+} */

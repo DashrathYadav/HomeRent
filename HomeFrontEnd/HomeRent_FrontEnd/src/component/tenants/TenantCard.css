@@ -1,0 +1,42 @@
+
+.TenantCard--container
+{
+    padding: 15px;
+}
+.TenantCard--card
+{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+.TenantCard--imgFrame{
+    width: 150px;
+    height:150px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.TenantCard--img{
+  width: 150px;
+  
+}
+.TenantCard--info{
+   width: 100%;
+    background-color:lightgrey;
+    line-height: 2rem;
+    font-family: cursive;
+    padding: 5px;
+    border-top: 1px solid;
+    border-top-right-radius: 50%;
+}
+
+.TenantCard--field{
+    font-size: large;
+}
+.TenantCard--value{
+    font-size: large;
+}

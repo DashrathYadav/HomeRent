@@ -53,7 +53,7 @@ function Login() {
   return (
     <div className="login--container">
       <div className="login--form">
-        <h1 className="login--title">Login</h1>
+        <h1 className="login--title">Tenant</h1>
         <hr
           style={{
             color: "black",

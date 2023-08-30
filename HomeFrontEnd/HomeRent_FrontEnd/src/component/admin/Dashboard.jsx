@@ -17,6 +17,9 @@ function Dashboard() {
         <Link to={"edit"}>
           <div className="Dashboard--Edit Dashboard--link">Edit</div>
         </Link>
+        <Link to={"/section"}>
+          <div className="Dashboard--Edit Dashboard--link">Home</div>
+        </Link>
        
       </nav>
       <div className="Dashboard--Outlet">

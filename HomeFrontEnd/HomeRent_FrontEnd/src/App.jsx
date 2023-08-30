@@ -22,15 +22,21 @@ import NewMonth from "./component/admin/create/NewMonth";
 import NewYear from "./component/admin/create/NewYear";
 import EditOptions from "./component/admin/edits/EditOptions";
 import EditMonth from "./component/admin/edits/EditMonth";
-import LanginPage from "./component/LandingPage";
+import CreateTenent from "./component/tenants/CreateTenent";
+import Section from "./component/section/Section";
+import Tenants from "./component/tenants/Tenants";
+import TenantsList, { tenantList } from "./component/tenants/TenantsList";
+import LandingPage from "./component/LandingPage";
+import TenantFullDetail, { tenantFullDetail } from "./component/tenants/TenantFullDetail";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
-      <Route path="/" element={<LanginPage />} />
+      <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/loginOwner" element={<LoginOwner />} />
       <Route path="/home" element={<HomePage />} />
+      <Route path="/section" element={<Section />} />
       <Route path="/admin" element={<Dashboard />}>
         <Route path="roomDetails" element={<Details />}>
           <Route
@@ -48,6 +54,13 @@ const router = createBrowserRouter(
           <Route path="EditMonth" element={<EditMonth />} />
         </Route>
       </Route>
+      <Route path="/tenants" element={<Tenants />}>
+        <Route path="createTenant" element={<CreateTenent/>} />
+        <Route path="tenantsList" element={<TenantsList />} 
+        loader={tenantList}>
+      </Route>
+      <Route path=":id" element={<TenantFullDetail/>} loader={tenantFullDetail} />
+          </Route>
     </Route>
   )
 );

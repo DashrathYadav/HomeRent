@@ -5,6 +5,7 @@ const mongo = require("mongoose");
 const bd = require("body-parser");
 const app = express();
 const cors = require("cors");
+const multer  = require('multer')
 const cookieParser = require("cookie-parser");
 const roomRoutes = require("./Routes/roomRoutes");
 const tenantRoutes = require("./Routes/tenantRoutes");
@@ -13,11 +14,10 @@ const adminSchema = require("./Schema/adminSchema");
 // https://homerent.netlify.app
 app.use(
   cors({
-    origin:"https://homerent.netlify.app",
+    origin:"http://localhost:5173",
     credentials: true,
   })
 );  
-
 
 
 mongo.connect(process.env.DB_URL_DASHRATH);
